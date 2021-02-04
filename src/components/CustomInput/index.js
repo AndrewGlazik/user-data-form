@@ -2,12 +2,12 @@ import React from "react";
 
 import './index.css';
 
-export default function (inputType = "text", requiredInput =false, labelValue) {
+export default function (props) {
+    const {inputType = "text", labelValue, ...otherProps} = props
     return (
-        <div className="group">
-            <input type={inputType} required={requiredInput}/>
-            <span className="bar"/>
-            <label>Имя</label>
+        <div className="input-group">
+            <input className="custom-input-input" type={inputType} required/>
+            <label className="custom-input-label">{labelValue}</label>
         </div>
     )
 };

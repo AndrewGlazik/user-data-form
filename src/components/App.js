@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import CustomInput from './CustomInput'
+import CustomButton from './CustomButton'
 
 import '../styles/App.css';
 
@@ -22,27 +23,21 @@ export default function () {
     }
 
     return (
-        <div>
-            <h1>My React App!</h1>
-            <form onSubmit={handleSubmit}>
-                <CustomInput labelValue="Имя"/>
-                <input type="date"/>
-                {/*<label>*/}
-                {/*    Фамилия*/}
-                {/*    <input*/}
-                {/*        value={userData.surname}*/}
-                {/*        onChange={e => setUserData(state => ({...state, surname: e.target.value}))}*/}
-                {/*    />*/}
-                {/*</label>*/}
-                {/*<label>*/}
-                {/*    Email*/}
-                {/*    <input*/}
-                {/*        type="email"*/}
-                {/*        value={userData.email}*/}
-                {/*        onChange={e => setUserData(state => ({...state, email: e.target.value}))}*/}
-                {/*    />*/}
-                {/*</label>*/}
-                <button>Submit</button>
+        <div className="form-wrapper">
+            <h3>Информация о сотруднике</h3>
+            <form onSubmit={handleSubmit} className="user-data-form">
+                <div className="grid-one-column">
+                    <CustomInput labelValue="Фамилия"/>
+                    <CustomInput labelValue="Имя"/>
+                    <CustomInput labelValue="Отчество"/>
+                    <div className="grid-two-column">
+                        <CustomInput labelValue="Пол"/>
+                        <CustomInput labelValue="Дата рождения"/>
+                    </div>
+                    <CustomInput labelValue="Адрес постоянной регистрации"/>
+                    <CustomInput labelValue="Название работодателя"/>
+                    <CustomButton buttonType="submit">Сохранить</CustomButton>
+                </div>
             </form>
         </div>
     )
