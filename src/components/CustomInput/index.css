@@ -1,4 +1,3 @@
-/* form starting stylings ------------------------------- */
 :root {
     --material-background-input: #f1f1f1;
 }
@@ -9,8 +8,9 @@
 }
 
 .custom-input-input {
+    box-sizing: border-box;
     position: relative;
-    font-family: 'Roboto Regular', sans-serif;
+    font-family: "Roboto Regular", sans-serif;
     font-size: 12px;
     background: var(--material-background-input);
     border-radius: 5px;
@@ -24,7 +24,6 @@
     outline: none;
 }
 
-/* LABEL ======================================= */
 .custom-input-label {
     color: #999;
     font-family: 'Roboto Regular', sans-serif;
@@ -38,7 +37,6 @@
     -webkit-transition: 0.2s ease all;
 }
 
-/* active state */
 .custom-input-input:focus ~ .custom-input-label,
 .custom-input-input:valid ~ .custom-input-label {
     top: 5px;

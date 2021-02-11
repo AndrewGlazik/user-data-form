@@ -3,23 +3,35 @@
     src: url(../../fonts/Roboto-Regular.ttf);
 }
 
+@font-face {
+    font-family: Roboto Medium;
+    src: url(../../fonts/Roboto-Medium.ttf);
+}
+
 .form-wrapper h3 {
-    font-family: 'Roboto Regular', sans-serif;
+    font-family: "Roboto Regular", sans-serif;
     margin: 10px 0;
 }
 
 .user-data-form {
-    max-width: 400px;
+    max-width: 450px;
 }
 
 .grid-one-column {
     display: grid;
-    grid-gap: 10px 20px;
+    grid-gap: 10px 0;
 }
 
 .grid-two-column {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px 40px;
+    grid-gap: 10px 20px;
+}
 
+.justify-end {
+    justify-self: end;
+}
+
+.half-width {
+    width: 50%;
 }

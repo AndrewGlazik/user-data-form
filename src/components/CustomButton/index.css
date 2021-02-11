@@ -1,0 +1,38 @@
+.button-group button {
+    box-sizing: border-box;
+    padding: 10px 15px;
+    --material-background-button: #55b855;
+    --material-background-button-hover: #509650;
+    --material-background-button-focus: #5fac5f;
+    background: var(--material-background-button);
+    border-radius: 5px;
+    border: none;
+    position: relative;
+    min-width: 100px;
+    text-transform: uppercase;
+    font-family: "Roboto Medium", sans-serif;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.button-group button:hover {
+    outline: none;
+    box-shadow: none;
+    background: var(--material-background-button-hover);
+}
+
+.button-group button:focus {
+    outline: none;
+    box-shadow: none;
+    background: var(--material-background-button-focus);
+}
+
+.button-group button[disabled] {
+    color: #d2d5db;
+    background: #6c7589;
+    cursor: not-allowed;
+}

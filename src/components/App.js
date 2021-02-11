@@ -19,7 +19,8 @@ export default function () {
 
     const handleSubmit = function (e) {
         e.preventDefault();
-        console.log(userData)
+        Object.keys(mainGuess).forEach()
+        console.log(mainGuess)
     }
 
     return (
@@ -33,10 +34,14 @@ export default function () {
                     <div className="grid-two-column">
                         <CustomInput labelValue="Пол"/>
                         <CustomInput labelValue="Дата рождения"/>
+                        <CustomInput labelValue="Мобильный телефон"/>
+                        <CustomInput labelValue="Email"/>
                     </div>
                     <CustomInput labelValue="Адрес постоянной регистрации"/>
                     <CustomInput labelValue="Название работодателя"/>
-                    <CustomButton buttonType="submit">Сохранить</CustomButton>
+                    <div className="justify-end half-width">
+                        <CustomButton buttonType="submit" customStyle={{width: '100%'}}>Сохранить</CustomButton>
+                    </div>
                 </div>
             </form>
         </div>
