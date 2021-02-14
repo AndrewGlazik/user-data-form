@@ -9,6 +9,8 @@ export default function () {
 
     const handleSubmit = function () {
         userData.validations.forEach(item => {
+
+
             // some validation
         })
         // e.preventDefault();

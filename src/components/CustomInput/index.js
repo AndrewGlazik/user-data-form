@@ -11,6 +11,7 @@ export default function (props) {
         name,
         setData,
         validation,
+        errors = ["123"],
         ...otherProps
     } = props
     return (
@@ -18,10 +19,11 @@ export default function (props) {
             <input onChange={e => setData(state => ({
                 ...state,
                 [name]: e.target.value,
-                validations: validation ? state.validations.push(validation) : state.validations
+                validations: validation ? state.validations.push({field: name, validation: validation}) : state.validations
             }))} name="bare"
                    className="custom-input-input" type={inputType} required/>
             <label className="custom-input-label">{labelValue}</label>
+            {errors.map(message => <span className="custom-input-error">{message}</span>)}
         </div>
     )
 };
