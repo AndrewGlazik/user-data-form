@@ -3,6 +3,7 @@
 }
 
 .input-group {
+    font-family: 'Roboto Regular', sans-serif;
     position: relative;
     width: 100%;
 }
@@ -10,7 +11,7 @@
 .custom-input-input {
     box-sizing: border-box;
     position: relative;
-    font-family: "Roboto Regular", sans-serif;
+    font-family: inherit;
     font-size: 12px;
     background: var(--material-background-input);
     border-radius: 5px;
@@ -26,7 +27,7 @@
 
 .custom-input-label {
     color: #999;
-    font-family: 'Roboto Regular', sans-serif;
+    font-family: inherit;
     font-size: 14px;
     position: absolute;
     pointer-events: none;
@@ -41,4 +42,14 @@
 .custom-input-input:valid ~ .custom-input-label {
     top: 5px;
     font-size: 10px;
+}
+
+.custom-input-error {
+    font-family: inherit;
+    font-size: 10px;
+    color: red;
+    padding-left: 10px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
 }

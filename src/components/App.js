@@ -3,40 +3,54 @@ import CustomInput from './CustomInput'
 import CustomButton from './CustomButton'
 
 import '../styles/App.css';
+import {FieldValidation} from "./CustomInput/validations";
+
+export const FormContext = React.createContext({})
 
 export default function () {
-    const [userData, setUserData] = useState({validations: []});
+    const [userData, setUserData] = useState({validations: []})
+    const [errors, setErrors] = useState([])
 
     const handleSubmit = function () {
-        userData.validations.forEach(item => {
-            // some validation
-        })
-        // e.preventDefault();
-        // Object.keys(mainGuess).forEach()
-        console.log(userData)
+        setErrors([])
+        if (userData.validations.reduce((previousValue,item) => {
+            let res = FieldValidation(item.validation, userData[item.field])
+            if (typeof res === "string") {
+                setErrors(state => [...state, {fieldName: item.field, message: res}])
+                return false
+            } else {
+                return previousValue
+            }
+        }, true)) {
+            console.log(userData)
+        } else {
+            console.log('error')
+        }
     }
 
     return (
         <div className="form-wrapper user-data-form">
             <h3>Информация о сотруднике</h3>
             {/*<form onSubmit={handleSubmit} className="user-data-form">*/}
-            <div className="grid-one-column">
-                <CustomInput name="surname" setData={setUserData} labelValue="Фамилия"/>
-                <CustomInput name="name" setData={setUserData} labelValue="Имя"/>
-                <CustomInput name="patronymic" setData={setUserData} labelValue="Отчество"/>
-                <div className="grid-two-column">
-                    <CustomInput name="gender" setData={setUserData} labelValue="Пол"/>
-                    <CustomInput name="dateOfBirth" setData={setUserData} labelValue="Дата рождения"/>
-                    <CustomInput name="telephone" setData={setUserData} labelValue="Мобильный телефон"/>
-                    <CustomInput name="email" validation="email" setData={setUserData} labelValue="Email"/>
+            <FormContext.Provider value={{setData: setUserData, errors: errors}}>
+                <div className="grid-one-column">
+                    <CustomInput name="surname" labelValue="Фамилия"/>
+                    <CustomInput name="name" labelValue="Имя"/>
+                    <CustomInput name="patronymic" labelValue="Отчество"/>
+                    <div className="grid-two-column">
+                        <CustomInput name="gender" labelValue="Пол"/>
+                        <CustomInput name="dateOfBirth" labelValue="Дата рождения"/>
+                        <CustomInput name="telephone" validation="numbers_only" labelValue="Мобильный телефон"/>
+                        <CustomInput name="email" validation="email" labelValue="Email"/>
+                    </div>
+                    <CustomInput name="address" labelValue="Адрес постоянной регистрации"/>
+                    <CustomInput name="employer" labelValue="Название работодателя"/>
+                    <div className="justify-end half-width">
+                        <CustomButton buttonType="button" onClick={handleSubmit}
+                                      customStyle={{width: '100%'}}>Сохранить</CustomButton>
+                    </div>
                 </div>
-                <CustomInput name="address" setData={setUserData} labelValue="Адрес постоянной регистрации"/>
-                <CustomInput name="employer" setData={setUserData} labelValue="Название работодателя"/>
-                <div className="justify-end half-width">
-                    <CustomButton buttonType="button" onClick={handleSubmit}
-                                  customStyle={{width: '100%'}}>Сохранить</CustomButton>
-                </div>
-            </div>
+            </FormContext.Provider>
             {/*</form>*/}
         </div>
     )
