@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 
 import './index.css';
+import {FormContext} from "../App";
 
 export default function (props) {
     const {
@@ -9,21 +10,32 @@ export default function (props) {
         isRequired = false,
         warningMessage = "Поле является обязательным",
         name,
-        setData,
         validation,
-        errors = ["123"],
         ...otherProps
     } = props
+
+    const contextValue = useContext(FormContext)
+
+    useEffect(() => {
+        contextValue.setData(state => ({
+            ...state,
+            validations: validation ? state.validations.concat({
+                field: name,
+                validation: validation
+            }) : state.validations
+        }))
+    }, [])
+
     return (
         <div className="input-group">
-            <input onChange={e => setData(state => ({
+            <input onChange={e => contextValue.setData(state => ({
                 ...state,
                 [name]: e.target.value,
-                validations: validation ? state.validations.push({field: name, validation: validation}) : state.validations
             }))} name="bare"
                    className="custom-input-input" type={inputType} required/>
             <label className="custom-input-label">{labelValue}</label>
-            {errors.map(message => <span className="custom-input-error">{message}</span>)}
+            {contextValue.errors.map(({fieldName, message}) => name === fieldName ?
+                <span className="custom-input-error">{message}</span> : null)}
         </div>
     )
 };
