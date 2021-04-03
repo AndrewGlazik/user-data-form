@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import CustomInput from './CustomInput'
 import CustomButton from './CustomButton'
+import CustomSelect from './CustomSelect'
 
 import '../styles/App.css';
-import {FieldValidation} from "./CustomInput/validations";
+import {FieldValidation} from './CustomInput/validations';
 
 export const FormContext = React.createContext({})
 
@@ -43,6 +44,14 @@ export default function () {
                         <CustomInput name="telephone" validation="numbers_only" labelValue="Мобильный телефон"/>
                         <CustomInput name="email" validation="email" labelValue="Email"/>
                     </div>
+                    <CustomSelect
+                        labelValue="Пол"
+                        options={[
+                            {value: "001", label: "Мужчина"},
+                            {value: "002", label: "Женщина"},
+                            {value: "003", label: "Другое"}
+                            ]}
+                    />
                     <CustomInput name="address" labelValue="Адрес постоянной регистрации"/>
                     <CustomInput name="employer" labelValue="Название работодателя"/>
                     <div className="justify-end half-width">
